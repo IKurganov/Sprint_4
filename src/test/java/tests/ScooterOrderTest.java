@@ -22,11 +22,13 @@ public class ScooterOrderTest extends TestBase {
         UserAndHisWishes ahmadijon = new UserAndHisWishes(
                 new UserPersonalData("Ахмадиджон", "Люцифербеков",
                         "Москвабад", "Орехово", "88005553535"),
-                new RentInformation("25.05.2022", "трое суток", "чёрный"));
+                new RentInformation("25.05.2022", "трое суток", "чёрный"),
+                false);
         UserAndHisWishes borec = new UserAndHisWishes(
                 new UserPersonalData("Работайте", "Братья",
                         "Ленинград, ул.Петра Четвертого", "Люблино", "+7905553535"),
-                new RentInformation("28.02.2021", "двое суток", "серый"));
+                new RentInformation("28.02.2021", "двое суток", "серый"),
+                true);
 
         users.add(ahmadijon);
         users.add(borec);
@@ -40,7 +42,7 @@ public class ScooterOrderTest extends TestBase {
         MainPage mainPage = new MainPage(driver);
         mainPage.open(baseUrl);
 
-        ForWhomOrderPage forWhomOrderPage = mainPage.clickOnOrderButton();
+        ForWhomOrderPage forWhomOrderPage = mainPage.clickOnOrderButton(user.isHeWannaUseUpperButton());
         forWhomOrderPage.fillAllFields(user.getUserPersonalData());
 
         AboutRentPage aboutRentPage = forWhomOrderPage.clickContinueButton();

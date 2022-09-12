@@ -6,12 +6,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends BasePage {
 
-//     локатор для стрелочки какого-либо вопроса
+    //     локатор для стрелочки какого-либо вопроса
     private String questionArrow = ("//div[@class='accordion__button' and text()='%s']");
     //     локатор для ответа на какой-либо вопрос
     private By answerPanel = By.xpath(".//ancestor::div[@data-accordion-component='AccordionItem']/div[@data-accordion-component='AccordionItemPanel']");
-    //     локатор для ответа на какой-либо вопрос
-    private By orderButton = By.xpath("//button[text()='Заказать']");
+    //     локатор для верхней кнопки Заказать
+    private By upperOrderButton = By.xpath("//div[contains(@class,'Header_Nav')]/button[text()='Заказать']");
+    //     локатор для нижней кнопки Заказать
+    private By lowerOrderButton = By.xpath("//div[contains(@class,'Home_FinishButton')]/button[text()='Заказать']");
     //     локатор для УНИЧТОЖЕНИЯ КУК КАК БУКАШЕК
     private By accessCookieButton = By.id("rcc-confirm-button");
 
@@ -39,10 +41,15 @@ public class MainPage extends BasePage {
         return answer.getText();
     }
 
-    public ForWhomOrderPage clickOnOrderButton() {
-        driver.findElement(orderButton).click();
+    public ForWhomOrderPage clickOnOrderButton(boolean isOrderButtonOnHeader) {
+        if (isOrderButtonOnHeader) {
+            driver.findElement(upperOrderButton).click();
+        } else {
+            WebElement lowerButton = driver.findElement(lowerOrderButton);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lowerButton);
+            lowerButton.click();
+        }
         return new ForWhomOrderPage(driver);
     }
 
 }
-
