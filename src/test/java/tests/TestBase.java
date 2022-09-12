@@ -14,7 +14,7 @@ public abstract class TestBase {
 
     @Before
     public void initDriver() {
-        driver = WebDriverFactory.getDriverForBrowser(BrowsersForDriver.FIREFOX);
+        driver = WebDriverFactory.getDriverForBrowser(BrowsersForDriver.CHROME);
 
         driver.manage().timeouts().pageLoadTimeout(13,TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
