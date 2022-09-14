@@ -9,7 +9,7 @@ import utils.WebDriverFactory;
 import java.util.concurrent.TimeUnit;
 
 public abstract class TestBase {
-    protected static String baseUrl = "https://qa-scooter.praktikum-services.ru/";
+    protected static final String BASE_URL = "https://qa-scooter.praktikum-services.ru/";
     protected WebDriver driver;
 
     @Before
