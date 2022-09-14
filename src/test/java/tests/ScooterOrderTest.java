@@ -40,7 +40,7 @@ public class ScooterOrderTest extends TestBase {
     private void checkOrderingForUser(UserAndHisWishes user){
 
         MainPage mainPage = new MainPage(driver);
-        mainPage.open(baseUrl);
+        mainPage.open(BASE_URL);
 
         ForWhomOrderPage forWhomOrderPage = mainPage.clickOnOrderButton(user.isHeWannaUseUpperButton());
         forWhomOrderPage.fillAllFields(user.getUserPersonalData());
